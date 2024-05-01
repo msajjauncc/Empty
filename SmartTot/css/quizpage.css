@@ -1,0 +1,135 @@
+html,
+body {
+  box-sizing: border-box;
+  background-color: #148f77;
+}
+
+.result.container-fluid {
+  margin-top: 5vh;
+}
+
+.quiz.container-fluid {
+  margin-top: 20vh;
+}
+.quiz-ans.container-fluid {
+  margin-top: 2vh;
+  margin-bottom: 10vh;
+}
+
+.timer {
+  color: white;
+  /* font-si
+    ze: ; */
+}
+
+.result-card {
+  margin: auto;
+  border-radius: 10px;
+  align-items: center;
+  width: 50vw;
+  min-width: 300px;
+  overflow-x: auto;
+}
+
+.quiz-card {
+  margin: auto;
+  border-radius: 10px;
+  align-items: center;
+  height: 50vh;
+  min-height: max-content;
+  width: 50vw;
+  min-width: 300px;
+  overflow-x: auto;
+}
+
+.card-title {
+  color: rgb(11, 196, 199);
+  font-weight: bold;
+  min-height: max-content;
+}
+
+.question-image {
+  height: 170px;
+}
+
+.result.card-title {
+  color: rgb(11, 196, 199);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.quiz.card-body {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 99%;
+  min-width: max-content;
+  min-height: max-content;
+}
+.quiz-ans.card-body {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 99%;
+  min-width: max-content;
+}
+.result.card-body {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-width: max-content;
+}
+
+.option.radio {
+  background-color: lightgray;
+  width: 90%;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.next.card-link,
+.previous.card-link {
+  border: 2px solid #148f77;
+  background-color: #148f77;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+.end {
+  padding: 15px;
+  background-color: lightgray;
+  border-radius: 100%;
+}
+
+.table {
+  margin-top: 30px;
+}
+
+.result-column {
+  margin-bottom: 5px;
+  margin-right: 2px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(243, 237, 237);
+}
+
+.go-home.btn {
+  background-color: #148f77;
+  color: white;
+  align-items: center;
+}
+
+.copyright {
+  background-color: #2c503e;
+  font-size: 20px;
+  bottom: 0;
+  position: fixed;
+}
+
+.bg-dark {
+  background-color: #2c503e !important;
+}

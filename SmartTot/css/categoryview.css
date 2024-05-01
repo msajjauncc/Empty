@@ -1,0 +1,26 @@
+.odd-right-container {
+  display: flex;
+  flex-direction: column;
+}
+.odd-right-container .btn {
+  align-self: flex-end;
+}
+
+.category-title {
+  color: #148f77;
+}
+.start-quiz {
+  background-color: #148f77;
+  border-color: #106e5b;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #106e5b;
+  box-shadow: 0 0 0.25rem #106e5b;
+  border-color: #106e5b;
+}
+
+.h4 {
+  color: #106e5b;
+}

@@ -1,0 +1,98 @@
+/* */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.myNav {
+  font-size: 1.2rem;
+  background-color: #2c503e !important;
+  color: white;
+}
+
+.welcomeuser {
+  margin: 0;
+  margin-right: 1rem;
+}
+
+.logoutbutton {
+  border: none;
+  width: 100%;
+  background-color: #148f77;
+  color: white;
+}
+
+.logoutbutton:hover {
+  background-color: #106e5b;
+  color: white;
+}
+
+.main-container {
+  margin-bottom: auto;
+}
+.main-container > .row {
+  width: 90vw;
+  min-height: 70vh;
+  /* border: 2px solid; */
+}
+
+.left-container {
+  border: 2px solid;
+}
+
+.right-container {
+  padding: 0px;
+}
+
+.profile.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile .avatar {
+  width: 50%;
+  min-width: 100px;
+}
+
+.menu .list-group {
+  border-radius: 0;
+}
+
+.menu .list-group .list-group-item {
+  margin: 5px 0;
+  border: 1px solid;
+  border-color: #148f77;
+}
+
+.list-group-item-success {
+  background-color: white;
+}
+.list-group-item-success.list-group-item-action.active {
+  background-color: #106e5b;
+}
+
+.about {
+  background-color: #148f77;
+}
+
+.extra {
+  height: 150px;
+}
+
+.insights.card {
+  /* background-color:  #2c3e50; */
+  border: 2px solid #148f77;
+  box-shadow: 0 0 15px 5px rgba(20, 143, 119, 0.4);
+  /* box-shadow: 0 0 39px 5px rgba(44, 62, 80, 0.4) ; */
+  color: #2c503e;
+}
+
+.copyright {
+  position: relative;
+  bottom: 0;
+  background-color: #2c503e;
+  font-size: 20px;
+}

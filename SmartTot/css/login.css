@@ -1,0 +1,104 @@
+/* */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.myNav {
+  font-size: 1.2rem;
+  background-color: #2c503e !important;
+  color: white;
+}
+
+/* ------------------ */
+.main.container {
+  min-height: 55vh;
+}
+
+#error-msg,
+#security-error-msg,
+#reset-error-msg {
+  color: red;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.container-sm {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  /* margin-top: 15vh; */
+}
+.container-md {
+  max-width: 556px;
+}
+
+::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.loginbutton {
+  width: 100%;
+  background-color: #148f77;
+  color: white;
+}
+
+.loginbutton:hover {
+  background-color: #106e5b;
+  color: white;
+}
+
+.heading-label {
+  color: #2c503e;
+}
+
+.form-control {
+  border: none;
+  padding: 0px;
+  padding-top: 5px;
+  border-radius: 0px;
+  border-bottom: 1px solid grey;
+}
+
+.form-control:focus {
+  border-bottom: 3px solid #148f77;
+  box-shadow: none;
+}
+.gender-radio {
+  margin-left: 0.75rem;
+}
+.click-here-link {
+  color: #148f77;
+}
+.click-here-link:hover,
+.click-here-link:hover {
+  color: #0e6957;
+}
+
+.footer-container {
+  position: relative;
+  bottom: 0;
+  padding: 0px;
+}
+.footer {
+  background-color: #2c503e;
+}
+
+.footer a {
+  border-radius: 100%;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.copyright {
+  background-color: #2c503e;
+  font-size: 20px;
+}

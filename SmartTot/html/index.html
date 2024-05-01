@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>My Quiz Application</title>
+
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+
+  <link href="../css/index.css" rel="stylesheet" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  <script src="../js/sessionhandle.js"></script>
+  <script>
+    if (checkSession()) {
+      if (localStorage.getItem("role") == "admin") {
+        $(location).attr("href", "adminhome.html");
+      } else {
+        $(location).attr("href", "userhomepage.html");
+      }
+    }
+  </script>
+</head>
+
+  <body id="home">
+    <!-- Navigation Bar -->
+    <nav
+      class="navbar navbar-expand-lg text-uppercase navbar-dark bg-dark py-3 myNav"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><img src="../assets/img/LOGO.png" style="height: 8vh"
+        /></a>
+        <button
+          class="navbar-toggler navButton text-white"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          MENU
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-0 mx-lg-1">
+              <a
+                class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                href="#home"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a
+                class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                href="#category"
+                >Categories</a
+              >
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a
+                class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                href="./login.html?role=admin"
+                >Teacher?</a
+              >
+            </li>
+           
+            <li class="nav-item mx-0 mx-lg-1">
+              <a
+                class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                href="#aboutus"
+                >About Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Part -->
+    <header class="masthead text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
+        <!-- Image--  src="../assets/img/avataaars.svg"-->
+        <img class="masthead-avatar" style="padding-top: 10vh;" src="https://st2.depositphotos.com/3687485/9342/v/450/depositphotos_93423848-stock-illustration-kids-school-geography-lessons-illustration.jpg"  alt="" />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading mb-0">
+          Hey kiddo!<br />
+          Wanna test your knowledge?!!
+        </h1>
+        <br />
+        <a href="./login.html?role=user" >
+          <button class="btn getStarted text-uppercase">Let's go</button>
+        </a>
+        <br />
+      </div>
+    </header>
+
+    <!-- Category Part -->
+    <section class="category" id="category">
+      <div class="container">
+        <br /><br />
+        <h2
+          class="page-section-heading text-center text-uppercase text-secondary mb-0"
+        >
+          Categories we offer
+        </h2>
+        <br /><br />
+      </div>
+
+      <div class="container category-container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div class="mx-auto position-relative catCard">
+              <a
+                href="#scienceModal"
+                class="categorytitle"
+                data-bs-toggle="modal"
+              >
+                <div
+                  class="cardTransition d-flex align-items-center justify-content-center h-100 w-100"
+                >
+                  <div class="text-center text-white text-uppercase">
+                    <h2>Science</h2>
+                  </div>
+                </div>
+              </a>
+              <img
+                class="img-fluid"
+                src="../assets/img/portfolio/sci.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div class="mx-auto position-relative catCard">
+              <a
+                href="#literatureModal"
+                class="categorytitle"
+                data-bs-toggle="modal"
+              >
+                <div
+                  class="cardTransition d-flex align-items-center justify-content-center h-100 w-100"
+                >
+                  <div class="text-center text-white text-uppercase">
+                    <h2>Literature</h2>
+                  </div>
+                </div>
+              </a>
+              <img
+                class="catCard img-fluid"
+                src="../assets/img/portfolio/literature.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div class="mx-auto position-relative catCard">
+              <a href="#gkModal" class="categorytitle" data-bs-toggle="modal">
+                <div
+                  class="cardTransition d-flex align-items-center justify-content-center h-100 w-100"
+                >
+                  <div class="text-center text-white text-uppercase">
+                    <h2>General Knowledge</h2>
+                  </div>
+                </div>
+              </a>
+              <img
+                class="catCard img-fluid"
+                src="../assets/img/portfolio/gk.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div class="mx-auto position-relative catCard">
+              <a
+                href="#numbersModal"
+                class="categorytitle"
+                data-bs-toggle="modal"
+              >
+                <div
+                  class="cardTransition d-flex align-items-center justify-content-center h-100 w-100"
+                >
+                  <div class="text-center text-white text-uppercase">
+                    <h2>Numbers</h2>
+                  </div>
+                </div>
+              </a>
+              <img
+                class="catCard img-fluid"
+                src="../assets/img/portfolio/numbers.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div class="mx-auto position-relative catCard">
+              <a
+                href="#sportsModal"
+                class="categorytitle"
+                data-bs-toggle="modal"
+              >
+                <div
+                  class="cardTransition d-flex align-items-center justify-content-center h-100 w-100"
+                >
+                  <div class="text-center text-white text-uppercase">
+                    <h2>Sports</h2>
+                  </div>
+                </div>
+              </a>
+              <img
+                class="catCard img-fluid"
+                src="../assets/img/portfolio/sports.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div class="mx-auto position-relative catCard">
+              <a
+                href="#entertainmentModal"
+                class="categorytitle"
+                data-bs-toggle="modal"
+              >
+                <div
+                  class="cardTransition d-flex align-items-center justify-content-center h-100 w-100"
+                >
+                  <div class="text-center text-white text-uppercase">
+                    <h2>Entertainment</h2>
+                  </div>
+                </div>
+              </a>
+              <img
+                class="catCard img-fluid"
+                src="../assets/img/portfolio/entertainment.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Part -->
+    <section class="about text-white mb-0" id="aboutus">
+      <div class="container d-flex align-items-center flex-column">
+        <br />
+        <br />
+        <h2 class="text-center text-uppercase text-white">About Us</h2>
+        <br />
+        <h4>
+          We host quizzes for kids to help them grow academically and develop
+          general knowledge to be socially aware about their surroundings.
+          Register your kids on our website to make them smart kids!!
+        </h4>
+        <br />
+        <a href="./registration.html">
+          <button class="btn getStarted text-uppercase">Register Now!</button>
+        </a>
+        <br />
+      </div>
+    </section>
+
+    <!-- Around the web part -->
+    <section class="footer text-center text-white">
+      <br /><br />
+      <div class="container">
+        <div class="row d-flex align-items-center flex-column">
+          <div class="col-lg-4 mb-5">
+            <h4 class="text-uppercase mb-4">Around the Web</h4>
+            <a class="btn btn-outline-light mx-1" href="#"
+              ><i class="fab fa-fw fa-facebook-f"></i
+            ></a>
+            <a class="btn btn-outline-light mx-1" href="#"
+              ><i class="fab fa-fw fa-twitter"></i
+            ></a>
+            <a class="btn btn-outline-light mx-1" href="#"
+              ><i class="fab fa-fw fa-linkedin-in"></i
+            ></a>
+            <a class="btn btn-outline-light mx-1" href="#"
+              ><i class="fab fa-fw fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer End -->
+    <section>
+      <div class="container-fluid py-4 copyright text-center text-white">
+        <small>&copy; Copyrights 2024. All rights reserved by SMARTTOT QUIZ.</small>
+      </div>
+    </section>
+
+    <!-- Category Modal HTML -->
+    <div id="scienceModal" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Science</h4>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="../assets/img/portfolio/sci.jpg"
+              class="categoryimage rounded mx-auto d-block"
+            />
+            <br />
+            <p>
+              Science is integral part of children's curriculum. Science helps
+              children develop key life skills, including an ability to
+              communicate, remain organized and focused, and even form their own
+              opinions based on observation. Science also helps children develop
+              their senses and overall awareness.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="literatureModal" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Literature</h4>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="../assets/img/portfolio/literature.jpg"
+              class="categoryimage rounded mx-auto d-block"
+            />
+            <br />
+            <p>
+              Reading books aloud to children stimulates their imagination and
+              expands their understanding of the world. It helps them develop
+              language and listening skills and prepares them to understand the
+              written word. Even after children learn to read by themselves,
+              it's still important for you to read aloud together.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gkModal" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">General Knowledge</h4>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="../assets/img/portfolio/gk.jpg"
+              class="categoryimage rounded mx-auto d-block"
+            />
+            <br />
+            <p>
+              General knowledge is something that really helps us to grow both
+              on personal as well as academic level. It narrows our sense of
+              perceiving the world, understands, and analyzes the situations
+              better as one would without proper knowledge. General knowledge
+              opens gateways our thinking, and take it to a level from where the
+              whole world seems to be a better place.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="numbersModal" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Numbers</h4>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="../assets/img/portfolio/numbers.jpg"
+              class="categoryimage rounded mx-auto d-block"
+            />
+            <br />
+            <p>
+              Numeracy is different than Mathematics. is a body of knowledge and
+              numeracy is the ability to use this to reason and apply
+              Mathematics knowledge to everyday life. It is not the quantity of
+              Math knowledge that one has that is important, it is the ability
+              to “see” math and use it to function in day to day life.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sportsModal" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Sports</h4>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="../assets/img/portfolio/sports.jpg"
+              class="categoryimage rounded mx-auto d-block"
+            />
+            <br />
+            <p>
+              Sports experiences help building positive self- esteem in
+              children. In addition, participating in sports can be a helpful
+              way of reducing stress and increasing feelings of physical and
+              mental well-being, as well as fighting against juvenile
+              delinquency, conflict and aggressive outbursts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="entertainmentModal" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Entertainment</h4>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="../assets/img/portfolio/entertainment.jpg"
+              class="categoryimage rounded mx-auto d-block"
+            />
+            <br />
+            <p>
+              Cartoons are essential part of every childhood. They are,
+              certainly, the most popular entertainment for children, but also
+              much more than that. With the help of cartoons kids learn about
+              the world around us, about new emotions, life issues and other
+              important things.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

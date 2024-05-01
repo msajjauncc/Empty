@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="/css/quizPage.css"> -->
+    <title>Quiz</title>
+    <link rel="stylesheet" href="../css/quizpage.css">
+    <script src="../js/sessionhandle.js"></script>
+    <script>
+        if (!checkSession()) {
+            $(location).attr('href', 'index.html');
+        }
+        else if (localStorage.getItem('categoryname') == null) {
+            $(location).attr('href', 'userhomepage.html');
+        }
+    </script>
+    <script src="../js/quizpage.js"></script>
+
+</head>
+
+<body>
+
+    <div id="element">
+        <nav class="navbar navbar-expand-lg text-uppercase navbar-dark bg-dark py-3 myNav">
+            <div class="container">
+                <a class="navbar-brand" href="#"><img src="../assets/img/LOGO.png" style="height:8vh;"></a>
+                <div class="timer h5" id="timer">Time Left: <span id="time">00:00</span></div>
+
+            </div>
+        </nav>
+
+
+        <div class="quiz container-fluid" id="showQuestionsDiv">
+            <div class="card  quiz-card">
+                <div class="quiz card-body text-center">
+
+                    <div class="text-start">
+                    <!--------- Question Number ----------->
+                    <h5 class="card-title" id="progress"></h5>
+                    <hr>
+
+                    <!--------------- Question -------------->
+
+                        <h4 class="card-subtitle mb-2 text-muted" id="question"></h4>
+                    </div>
+                    <br>
+
+                    <img class="card-subtitle mb-2 question-image " src="" id="questionImageShow" alt=""> <br>
+                    <!------------- Answer Options -------------->
+
+                    <div class="container" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" name="options" id="option1" checked>
+                        <label class="option radio btn" id="label1" for="option1"></label>
+
+                        <br><input type="radio" name="options" id="option2">
+                        <label class="option radio btn" id="label2" for="option2"></label>
+
+                        <br><input type="radio" name="options" id="option3">
+                        <label class="option radio btn" id="label3" for="option3"></label>
+
+                        <br><input type="radio" name="options" id="option4">
+                        <label class="option radio btn" id="label4" for="option4"></label>
+                    </div><br>
+
+                    <!------------- Next Question Button -------------->
+                    <button class="previous card-link" id="prevQuestion">Previous</button>
+                    <button class="next card-link" id="nextQuestion">Next</button>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="result container-fluid" id="showResultDiv">
+            <div class="card  result-card">
+                <div class="result card-body">
+
+                    <!--------- Question Number ----------->
+
+                    <h3 class="result card-title">Quiz Result</h3>
+
+                    <!------- Table for Details of Quiz ------->
+                    <div class="table">
+                        <div class="row justify-content-center">
+                            <div class="result-column col-5">
+                                Total Questions
+                            </div>
+                            <div class="result-column col-5" id="totalQuestions">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="result-column col-5">
+                                Correct
+                            </div>
+                            <div class="result-column col-5" id="correctQuestions">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="result-column col-5">
+                                Wrong
+                            </div>
+                            <div class="result-column col-5" id="wrongQuestions">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="result-column col-5">
+                                Percentage
+                            </div>
+                            <div class="result-column col-5" id="percentage">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="result-column col-5">
+                                Score
+                            </div>
+                            <div class="result-column col-5" id="score">
+                            </div>
+                        </div>
+
+                        <!------ Button for Go to Home ------->
+                    </div>
+                    <center>
+                        <button type="button" id="goHomeButtonId" class="go-home btn">Go to Home</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+
+        <!-- Show Answer key -->
+        <div class="quiz-ans container-fluid " id="showAnswersDiv">
+            <div class="card  quiz-card">
+                <div class="quiz card-body" id="showAnswersList">
+                    <!-- Answer List Goes here... -->
+                    <h3 class="result card-title">Check Your Answer</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!------------- Footer ---------------->
+    <section>
+        <div class="container-fluid py-4 copyright text-center text-white">
+            <small>&copy; Copyrights 2024. All rights reserved by SMARTTOT QUIZ.</small>
+        </div>
+    </section>
+
+</body>
+
+</html>

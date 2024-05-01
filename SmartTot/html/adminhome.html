@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Quiz Application</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+
+    <!-- Font Awesome icons (free version) -->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+    <!-- Core theme CSS (includes Bootstrap) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+        crossorigin="anonymous" />
+
+    <!-- Core js (includes Bootstrap bundle and jquery) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- Js file for google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <link href="../css/adminhome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/admintable.css" />
+    <link rel="stylesheet" href="../css/leaderboard.css" />
+
+    <script src="../js/sessionhandle.js"></script>
+    <script>
+        if (!checkSession()) {
+            $(location).attr("href", "index.html");
+        } else {
+            if (localStorage.getItem("role") == "user") {
+                $(location).attr("href", "userhomepage.html");
+            }
+        }
+    </script>
+    <script src="../js/adminhome.js"></script>
+    <script src="../js/questioncrud.js"></script>
+    <script src="../js/leaderboard.js"></script>
+    <script src="../js/displayuserdetails.js"></script>
+    <script src="../js/insight.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Activate tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</head>
+
+<body id="home">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg text-uppercase navbar-dark bg-dark py-3 myNav">
+        <div class="container">
+            <a class="navbar-brand" href="adminhome.html"><img src="../assets/img/LOGO.png" style="height: 8vh"
+                    /></a>
+
+            <ul class="nav align-items-center">
+                <li class="nav-item">
+                    <h6 class="welcomeuser">Welcome, <span id="username"></span></h6>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-sm btn-primary logoutbutton" id="logout">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Category Part -->
+    <div class="container main-container d-flex justify-content-center my-5">
+        <div class="row justify-content-between">
+            <!-- Left Container -->
+            <div class="left-container col-md-12 col-lg-4 mb-3 py-4 align-self-start">
+                <div class="profile container">
+                    <h3>Teacher</h3>
+                    <img id="display-avatar" src="../assets/img/avataaars.svg" alt="Image Not available" class="avatar" />
+                    <h4 id="display-name"></h4>
+                    <h6 id="display-email"></h6>
+                    <h6 id="display-mobile"></h6>
+                </div>
+                <div class="menu container">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action list-group-item-success active"
+                            id="insight-list" data-bs-toggle="list" href="#list-insight" role="tab"
+                            aria-controls="insight">QUIZ Insights</a>
+                        <a class="list-group-item list-group-item-action list-group-item-success" id="question-list"
+                            data-bs-toggle="list" href="#list-question" role="tab" aria-controls="question">Edit Quiz Questions</a>
+                        <a class="list-group-item list-group-item-action list-group-item-success" id="leaderboard-list"
+                            data-bs-toggle="list" href="#list-leaderboard" role="tab" aria-controls="leaderboard">Leaderboard</a>
+                        <a class="list-group-item list-group-item-action list-group-item-success" id="user-profile-list"
+                            data-bs-toggle="list" href="#list-user-profile" role="tab" aria-controls="user-profile">User
+                            Profiles</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Container -->
+            <div class="right-container col-md-12 col-lg-8 px-3">
+                <div class="tab-content container" id="nav-tabContent">
+                    <!-- Insight Tab -->
+                    <div class="tab-pane fade show active" id="list-insight" role="tabpanel" aria-labelledby="list-insight">
+                        <div class="row container-fluid justify-content-evenly">
+                            <div class="insights card mb-3 col-lg-5">
+                              <div class="card-body">
+                                <div class="card-header bg-transparent">
+                                  <h5 class="card-title">Total User</h5>
+                                </div>
+                                <p class="card-text display-4" id="total-user">0</p>
+                              </div>
+                            </div>
+                            <div class="insights card mb-3 col-lg-5">
+                              <div class="card-body">
+                                <div class="card-header bg-transparent">
+                                  <h5 class="card-title">Total Question</h5>
+                                </div>
+                                <p class="card-text display-4" id="total-question">0</p>
+                              </div>
+                            </div>
+                            <div class="insights card mb-3 col-lg-5">
+                              <div class="card-body">
+                                <div class="card-header bg-transparent">
+                                  <h5 class="card-title">Total QUIZ Taken</h5>
+                                </div>
+                                <p class="card-text display-4" id="total-quiz">0</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" id="charts">
+                            <div class="col-md-12 col-lg-6">
+                                <div class="chart-container w-100" id="piechart"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Tab -->
+                    <div class="tab-pane fade" id="list-question" role="tabpanel" aria-labelledby="#list-question">
+                        <div class="question-add table-responsive">
+                            <div class="table-wrapper">
+                                <div class="table-title d-flex justify-content-between">
+                                  <div>
+                                    <h2>Question And Categories Details</h2>
+                                  </div>
+                                  <div class="d-flex">
+                                    <button
+                                      data-bs-target="#addQuestionModal"
+                                      id="add-question-modal"
+                                      class="btn addquestion"
+                                      data-bs-toggle="modal"
+                                    >
+                                      <i class="material-icons">&#xE147;</i>
+                                      <span>Add New Question</span>
+                                    </button>
+                                    <div class="dropdown">
+                                      <button
+                                        class="btn selectcategory dropdown-toggle"
+                                        type="button"
+                                        id="dropdownMenuButtonOutside"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                      >
+                                        All Categories
+                                      </button>
+                                      <div
+                                        class="dropdown-menu"
+                                        id="select-category-1"
+                                        aria-labelledby="dropdownMenuButton"
+                                      >
+                                        <a class="dropdown-item" href="#">All Categories</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Table For Displaying Questions -->
+                                <table class="table table-striped table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>Sr. No.</th>
+                                      <th>Question</th>
+                                      <th>Category</th>
+                                      <th>Actions</th>
+                                    </tr>
+                                  </thead>
+              
+                                  <!--Table Body-->
+                                  <tbody id="questionlistbody">
+                                    <tr>
+                                      <td>1</td>
+                                      <td>What is capital of India?</td>
+                                      <td class="category">GK</td>
+                                      <td>
+                                        <a
+                                          data-bs-target="#editQuestionModal"
+                                          class="edit"
+                                          data-bs-toggle="modal"
+                                          ><i
+                                            class="material-icons"
+                                            data-toggle="tooltip"
+                                            title="Edit"
+                                            >&#xE254;</i
+                                          ></a
+                                        >
+                                        <a
+                                          data-bs-target="#deleteQuestionModal"
+                                          class="delete"
+                                          data-bs-toggle="modal"
+                                          ><i
+                                            class="material-icons"
+                                            data-toggle="tooltip"
+                                            title="Delete"
+                                            >&#xE872;</i
+                                          ></a
+                                        >
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leaderboard Tab -->
+                    <div class="tab-pane fade" id="list-leaderboard" role="tabpanel" aria-labelledby="leaderboard-list">
+                        <div class="leaderboard table-responsive">
+                            <div class="table-wrapper">
+                              <div class="table-title d-flex justify-content-between">
+                                <div>
+                                  <h2>Leaderboard</h2>
+                                </div>
+                                <div class="d-flex">
+                                  <div class="dropdown">
+                                    <button
+                                      class="btn selectcategory dropdown-toggle"
+                                      type="button"
+                                      id="dropdownMenuButtonOutsideLeaderboard"
+                                      data-bs-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    >
+                                      All Categories
+                                    </button>
+                                    <div
+                                      class="dropdown-menu"
+                                      id="select-category-3"
+                                      aria-labelledby="dropdownMenuButton"
+                                    >
+                                      <a class="dropdown-item" href="#">All Categories</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Table for Displaying Ranks in Leaderboard -->
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Rank No.</th>
+                                    <th>Name</th>
+                                    <th>Email ID</th>
+                                    <th>Score</th>
+                                    <th>Category</th>
+                                </tr>
+                                </thead>
+            
+                                <!--Table Body-->
+                                <tbody id="leaderboardbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- User Profile Tab -->
+                    <div class="tab-pane fade" id="list-user-profile" role="tabpanel"
+                        aria-labelledby="user-profile-list">
+                        <div class="leaderboard table-responsive">
+                            <div class="table-wrapper">
+                                <!-- User Profile Table -->
+                                <div class="table-title">
+                                    <h2 id="usercount">Total Users</h2>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>Sr No.</th>
+                                    <th>User Name</th>
+                                    <th>Email ID</th>
+                                    <th>Gender</th>
+                                    <th>Mobile Number</th>
+                                  </tr>
+                                </thead>
+              
+                                <!--Table Body-->
+                                <tbody id="user-profile-table"></tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Questions HTML -->
+        <div id="addQuestionModal" class="modal fade">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content text-secondary">
+                  <form id="question-add-form">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Add New Question</h4>
+                      <button
+                        type="button"
+                        class="close"
+                        data-bs-dismiss="modal"
+                        aria-hidden="true"
+                      >
+                        &times;
+                      </button>
+                    </div>
+                    <div id="error-msg-add"></div>
+                    <div class="modal-body">
+                      <div class="form-group dropdown">
+                        <button
+                          class="btn modalbtn dropdown-toggle"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          id="selectedCatagoryDisplay"
+                        >
+                          Select Category
+                        </button>
+                        <div
+                          class="dropdown-menu"
+                          id="select-category-2"
+                          aria-labelledby="dropdownMenuButton"
+                        ></div>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="question"
+                          class="form-control"
+                          placeholder="que"
+                          required
+                        />
+                        <label for="question">Question</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="option-1"
+                          class="form-control"
+                          placeholder="op1"
+                          required
+                        />
+                        <label for="option-1">Option 1</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="option-2"
+                          class="form-control"
+                          placeholder="op2"
+                          required
+                        />
+                        <label for="option-2">Option 2</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="option-3"
+                          class="form-control"
+                          placeholder="op3"
+                          required
+                        />
+                        <label for="option-3">Option 3</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="option-4"
+                          class="form-control"
+                          placeholder="op4"
+                          required
+                        />
+                        <label for="option-4">Option 4</label>
+                      </div>
+                      <div class="form-group dropdown">
+                        <button
+                          class="btn modalbtn dropdown-toggle"
+                          type="button"
+                          id="answer"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Select Answer
+                        </button>
+                        <div
+                          class="dropdown-menu"
+                          id="select-answer-1"
+                          aria-labelledby="dropdownMenuButton"
+                        >
+                          <a class="dropdown-item" value="option-1" href="#"
+                            >Option A</a
+                          >
+                          <a class="dropdown-item" value="option-2" href="#"
+                            >Option B</a
+                          >
+                          <a class="dropdown-item" value="option-3" href="#"
+                            >Option C</a
+                          >
+                          <a class="dropdown-item" value="option-4" href="#"
+                            >Option D</a
+                          >
+                        </div>
+                      </div>
+                      <div class="form-group mb-2 add-difficulty-level-radio" id="difficulty-add-level">
+                        <label for="role">Difficulty Level:&nbsp; </label>
+                        <input class="form-check-input" type="radio" name="add-level" id="easy" value="Easy" />
+                        <label class="form-check-label" for="Easy">Easy</label>
+                        <input class="form-check-input" type="radio" name="add-level" id="medium" value="Medium" />
+                        <label class="form-check-label" for="Medium">Medium</label>
+                        <input class="form-check-input" type="radio" name="add-level" id="hard" value="Hard" />
+                        <label class="form-check-label" for="Hard">Hard</label>
+                      </div>
+      
+                      <div class="form-group">
+                        <label>Add Image (Optional)</label>
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="questionImage"
+                          accept="image/*"
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <input
+                        type="button"
+                        class="btn modalbtn"
+                        data-bs-dismiss="modal"
+                        value="Cancel"
+                      />
+                      <input type="submit" class="btn modalbtn" value="Add" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+
+        <!-- Edit Question HTML -->
+        <div id="editQuestionModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content text-secondary">
+                  <form id="question-update-form">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Edit Question</h4>
+                      <button
+                        type="button"
+                        class="close"
+                        data-bs-dismiss="modal"
+                        aria-hidden="true"
+                      >
+                        &times;
+                      </button>
+                    </div>
+      
+                    <div class="modal-body">
+                      <input
+                        type="text"
+                        id="edit-question-id"
+                        class="form-control"
+                        hidden
+                        required
+                      />
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="edit-question"
+                          class="form-control"
+                          required
+                        />
+                        <label for="edit-question">Question</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="edit-option-1"
+                          class="form-control"
+                          required
+                        />
+                        <label for="edit-option-1">Option 1</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="edit-option-2"
+                          class="form-control"
+                          required
+                        />
+                        <label for="edit-option-2">Option 2</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="edit-option-3"
+                          class="form-control"
+                          required
+                        />
+                        <label for="edit-option-3">Option 3</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="edit-option-4"
+                          class="form-control"
+                          required
+                        />
+                        <label for="edit-option-4">Option 4</label>
+                      </div>
+                      <div class="form-group dropdown">
+                        <button
+                          class="btn modalbtn dropdown-toggle"
+                          type="button"
+                          id="dropdownMenuButton"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Select Answer
+                        </button>
+                        <div
+                          class="dropdown-menu"
+                          id="edit-answer"
+                          aria-labelledby="dropdownMenuButton"
+                        >
+                          <a class="dropdown-item" value="edit-option-1" href="#"
+                            >Option A</a
+                          >
+                          <a class="dropdown-item" value="edit-option-2" href="#"
+                            >Option B</a
+                          >
+                          <a class="dropdown-item" value="edit-option-3" href="#"
+                            >Option C</a
+                          >
+                          <a class="dropdown-item" value="edit-option-4" href="#"
+                            >Option D</a
+                          >
+                        </div>
+                      </div>
+                      <div class="form-group mb-2 edit-difficulty-level-radio" id="difficulty-edit-level">
+                        <label for="role">Difficulty Level:&nbsp; </label>
+                        <input class="form-check-input" type="radio" name="edit-level" id="easy" value="Easy" />
+                        <label class="form-check-label" for="Easy">Easy</label>
+                        <input class="form-check-input" type="radio" name="edit-level" id="medium" value="Medium" />
+                        <label class="form-check-label" for="Medium">Medium</label>
+                        <input class="form-check-input" type="radio" name="edit-level" id="hard" value="Hard" />
+                        <label class="form-check-label" for="Hard">Hard</label>
+                      </div>
+                      <div class="form-group">
+                        <label>Add Image (Optional)</label>
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="questionImageUpdate"
+                        />
+                      </div>
+                    </div>
+      
+                    <div class="modal-footer">
+                      <input
+                        type="button"
+                        class="btn modalbtn"
+                        data-bs-dismiss="modal"
+                        value="Cancel"
+                      />
+                      <input
+                        type="submit"
+                        id="update-question-button"
+                        class="btn modalbtn"
+                        value="Edit"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+
+        <!-- Delete Question HTML -->
+        <div id="deleteQuestionModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <form>
+                    <div class="modal-header">
+                      <h4 class="modal-title">Delete Question</h4>
+                      <button
+                        type="button"
+                        class="close"
+                        data-bs-dismiss="modal"
+                        aria-hidden="true"
+                      >
+                        &times;
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete this question?</p>
+                      <p class="text-warning">
+                        <small>This action cannot be undone.</small>
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <input
+                        type="button"
+                        class="btn modalbtn"
+                        data-bs-dismiss="modal"
+                        value="Cancel"
+                      />
+                      <input
+                        type="button"
+                        id="delete-question-button"
+                        class="btn btn-danger"
+                        value="Delete"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <!-- Footer End -->
+    <div class="container-fluid py-4 copyright text-center text-white">
+        <small>&copy; Copyrights 2024. All rights reserved by SmartTot Quiz.</small>
+    </div>
+    </body>
+    </html>
